@@ -8,17 +8,19 @@ It's plain HTML, CSS and JavaScript: no framework, no build step, no backend, no
 
 ## What's in it
 
-| Feature | What it does |
+Built from her own material: the real logo, real photos of her boxes and events, and the colours of her flyers (kraft, green, that lime-yellow).
+
+| Section | What it does |
 |---|---|
-| **Day-aware hero** | The floating card shows *today's* special on Wed/Thu/Fri, *tomorrow's* on Tuesday, or the next one otherwise. On Sundays the status pill switches to "orders open again Monday". |
-| **Weekly specials** | A strip of the next 6 open days with Wed/Thu/Fri highlighted. Pick a day, choose a protein (chicken / goat / pork, each with its own price), set a quantity, and add it to the order. Each item is tied to its next serving date. |
-| **Melanin Box family** | Both boxes with full contents and prices. A "highlight what's different" switch compares them, there's a date picker for pre-orders, and customers can write their **thank-you card message** on the site. |
-| **One-tap WhatsApp order** | The cart drawer has delivery/pickup, name, location and notes. It sends a neatly formatted message with an order reference, dates, line totals and the "payment validates order" line. |
-| **Bulk quote form** | Date, headcount and dish chips go out as a ready-to-send quote request on WhatsApp. |
-| **Hiring banner** | Kitchen Assistant role, with requirements and a "Send your CV" WhatsApp link. Set `hiring.open: false` to hide it. |
-| **Social proof** | TikTok/Instagram section with animated stats and phone mock-ups. |
-| **SEO & sharing** | Restaurant schema (hours, menu, prices, phone), Open Graph image for WhatsApp/Instagram link previews, web manifest. |
-| **Polish** | Fly-to-cart animation, sticky mobile order bar, cart saved across visits, keyboard and screen-reader friendly, respects reduced-motion. |
+| **Hero** | "Pepper rice Wednesdays. Garifotor Thursdays. Jollof Fridays." The next special is highlighted automatically, and the line underneath says what's on today, tomorrow or next. On Sundays it says they're closed and invites orders ahead. |
+| **This week's lunch** | A printed-menu layout with dotted price lines. Tap any price (chicken / goat / pork) to add that pack for its next serving date. |
+| **Melanin Box** | Melanin Box and Mini on tabs, the full contents, a delivery date, quantity and the thank-you card message. Shows "24–48 hrs notice · full payment confirms order". |
+| **Gifting** | Her ribbon-tied boxes, plus a button that jumps straight to writing the card message. |
+| **Bulk orders** | Her party-spread photo beside a quote form: date, headcount and dishes go to WhatsApp. |
+| **One-tap WhatsApp order** | The order drawer covers delivery or pickup, name, address and notes. It sends a formatted message with an order reference, dates, line totals and "payment validates order". |
+| **From the kitchen** | A photo grid linking to TikTok and Instagram. |
+| **Hiring** | The Kitchen Assistant post with requirements and an "Apply on WhatsApp" link. Set `hiring.open: false` to hide it. |
+| **SEO & sharing** | Restaurant schema (hours, menu, prices), a link-preview image, favicon from her logo. |
 
 ## Preview locally
 
@@ -43,18 +45,16 @@ A custom domain like `spicencook.com.gh` or `spicencook.com` can be attached on 
 Everything lives in **`js/menu.js`**: prices, dishes, box contents, phone number, socials,
 bulk items and the hiring post. Change it, save, and redeploy.
 
-Real photos go in **`assets/photos/`**. See [`assets/photos/README.md`](assets/photos/README.md)
-for the filenames. Until a photo exists, each slot shows a matching hand-drawn illustration, so
-the site never looks broken.
+Photos live in **`assets/img/`**. To swap one, replace the file under the same name (keep it under ~300 KB).
+The Wednesday pepper-rice image is cropped from her specials flyer and is the lowest resolution on the site,
+so a real photo of that dish is the first one to ask her for.
 
 ## Go-live checklist
 
-- [ ] Add her real photos to `assets/photos/` (from her TikTok/Instagram, or fresh shots)
-- [ ] Replace `assets/logo-mark.svg` with her original logo file, if she has one
+- [ ] Ask her for a real photo of the Wednesday pepper rice (and her original logo file, for a sharper logo)
 - [ ] Set `showPreviewBar: false` in `js/menu.js` (removes the "Hi Spice N Cook 👋" demo bar)
-- [ ] Confirm with her: delivery vs pickup, delivery areas/fees, box notice period, Instagram handle
+- [ ] Confirm with her: delivery vs pickup, and delivery areas/fees
 - [ ] After deploying, change `og:image` in `index.html` to the full URL (e.g. `https://yourdomain/assets/og-image.jpg`) so WhatsApp link previews show the image
-- [ ] Update the TikTok numbers in `index.html` from time to time
 
 ## Files
 
@@ -62,7 +62,7 @@ the site never looks broken.
 index.html            page structure + SEO/schema
 css/styles.css        design system & layout
 js/menu.js            ALL editable content
-js/art.js             illustrated food art (fallback until photos are added)
-js/app.js             specials, cart, WhatsApp, forms, animations
-assets/               logo, favicon, share image, photos/
+js/app.js             menu, boxes, cart, WhatsApp, forms
+assets/img/           her photos and logo, web-optimised
+assets/               favicon, share image
 ```
