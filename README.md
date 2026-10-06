@@ -33,13 +33,17 @@ python3 -m http.server 8000
 **Demo tip:** add `?day=wed`, `?day=thu`, `?day=fri` or `?day=sun` to the URL to show how the site changes
 through the week, e.g. `http://localhost:8000/?day=thu`.
 
-## Put it online (free, about 2 minutes)
+## Live site (GitHub Pages)
 
-- **Netlify Drop**: go to <https://app.netlify.com/drop> and drag this whole folder in. You get a live link instantly.
-- **GitHub Pages**: in this repo, go to Settings → Pages → Deploy from branch → pick the branch and `/ (root)`.
-- **Vercel**: run `npx vercel` in this folder, or import the repo at vercel.com.
+**https://techkhid.github.io/Spice-cook/**
 
-A custom domain like `spicencook.com.gh` or `spicencook.com` can be attached on any of these.
+Every push to this branch redeploys automatically through `.github/workflows/pages.yml`, which takes about a minute. Progress shows under the repo's **Actions** tab.
+
+One-time setup: in the repo go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+
+A custom domain (e.g. `spicencook.com`) can be added under Settings → Pages → Custom domain.
+
+Note: GitHub Pages only hosts static files. The site, checkout and demo payments all work there. For **live** Paystack payments with server-side verification, `netlify/functions/verify-payment.js` needs a host that runs functions (Netlify or Vercel, both free), or you can verify in her Paystack dashboard.
 
 ## Payments: demo mode and going live
 
@@ -72,7 +76,7 @@ so a real photo of that dish is the first one to ask her for.
 - [ ] Set `showPreviewBar: false` in `js/menu.js` (removes the "Hi Spice N Cook 👋" demo bar)
 - [ ] Confirm with her: delivery vs pickup, and delivery areas/fees (set `deliveryFee` if she wants it paid online)
 - [ ] Set up Paystack and switch `payments.mode` to `"paystack"` (see above)
-- [ ] After deploying, change `og:image` in `index.html` to the full URL (e.g. `https://yourdomain/assets/og-image.jpg`) so WhatsApp link previews show the image
+- [ ] If you move to a custom domain, update `og:url` and `og:image` in `index.html` to the new address
 
 ## Files
 
