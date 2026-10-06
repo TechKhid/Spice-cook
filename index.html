@@ -20,6 +20,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Gloock&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    /* Motion setup before first paint: hide elements the intro will reveal,
+       and fall back to a static page if the animation layer doesn't start. */
+    (function () {
+      var d = document.documentElement;
+      if (!window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      d.classList.add("anim");
+      try { if (!sessionStorage.getItem("snc-intro")) d.classList.add("intro-on"); } catch (e) {}
+      setTimeout(function () { if (!window.SNC_ANIM) d.classList.remove("anim", "intro-on"); }, 2500);
+    })();
+  </script>
   <link rel="preload" as="image" href="assets/img/boxes-open.jpg" />
 
   <script type="application/ld+json">
@@ -62,8 +73,13 @@
 
   <a class="skip" href="#lunch">Skip to the menu</a>
 
+  <div class="intro" id="intro" aria-hidden="true">
+    <img src="assets/img/logo.png" alt="" width="320" height="223" />
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
   <div class="preview" id="previewBar" hidden>
-    <p>Hi Spice N Cook, this is a working preview of your website. Try placing an order: it goes all the way to WhatsApp.</p>
+    <p>Hi Spice N Cook, this is a working preview of your website. Try ordering and paying: it's a demo, so no money moves.</p>
     <button type="button" id="previewClose" aria-label="Dismiss"><svg><use href="#i-x"/></svg></button>
   </div>
 
@@ -271,9 +287,12 @@
   <div class="scrim" id="scrim" hidden></div>
   <aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true" tabindex="-1">
     <header class="drawer__head">
-      <h2>Your order</h2>
+      <h2 id="drawerTitle">Your order</h2>
       <button class="icon-btn" type="button" id="drawerClose" aria-label="Close"><svg><use href="#i-x"/></svg></button>
     </header>
+    <ol class="dsteps" id="dsteps" aria-label="Checkout progress">
+      <li>Order</li><li>Details</li><li>Payment</li>
+    </ol>
     <div class="drawer__body" id="drawerBody"></div>
   </aside>
 
@@ -287,7 +306,11 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/SplitText.min.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/anim.js"></script>
 </body>
 </html>

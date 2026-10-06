@@ -17,9 +17,10 @@ Built from her own material: the real logo, real photos of her boxes and events,
 | **Melanin Box** | Melanin Box and Mini on tabs, the full contents, a delivery date, quantity and the thank-you card message. Shows "24–48 hrs notice · full payment confirms order". |
 | **Gifting** | Her ribbon-tied boxes, plus a button that jumps straight to writing the card message. |
 | **Bulk orders** | Her party-spread photo beside a quote form: date, headcount and dishes go to WhatsApp. |
-| **One-tap WhatsApp order** | The order drawer covers delivery or pickup, name, address and notes. It sends a formatted message with an order reference, dates, line totals and "payment validates order". |
+| **Checkout & payment** | Order, then details, then payment, then receipt, all on the site. Customers pay with Mobile Money (MTN MoMo, Telecel Cash, AT Money) or card, get a printable receipt, and can send it to the kitchen on WhatsApp in one tap. Runs in **demo mode** by default (see below). Customers can still choose "send on WhatsApp and pay later". |
 | **From the kitchen** | A photo grid linking to TikTok and Instagram. |
 | **Hiring** | The Kitchen Assistant post with requirements and an "Apply on WhatsApp" link. Set `hiring.open: false` to hide it. |
+| **Motion** | GSAP (bundled in `js/vendor`): a logo intro on the first visit, the headline rising in word by word, image wipes and parallax, a dish photo that flies into the order when you tap a price, a rolling order count, a price that rolls between box sizes, a phone-approval animation and confetti when payment succeeds. Switches off completely for visitors who turn on "reduce motion". |
 | **SEO & sharing** | Restaurant schema (hours, menu, prices), a link-preview image, favicon from her logo. |
 
 ## Preview locally
@@ -40,6 +41,22 @@ through the week, e.g. `http://localhost:8000/?day=thu`.
 
 A custom domain like `spicencook.com.gh` or `spicencook.com` can be attached on any of these.
 
+## Payments: demo mode and going live
+
+Payment settings are in `js/menu.js` under `payments`.
+
+**Demo mode** (`mode: "demo"`, the default) runs the whole checkout. The Mobile Money approval is simulated and no money moves. The receipt is clearly stamped "Demo payment". Use this for showing her the site.
+
+**Going live with Paystack** (the most common way Ghanaian businesses take Mobile Money and cards online):
+
+1. She creates a Paystack account at paystack.com (Ghana) and completes business verification.
+2. Copy the **public** key from Settings → API Keys into `paystackPublicKey`, and set `mode: "paystack"`. Start with the `pk_test_…` key and Paystack's test numbers, then switch to `pk_live_…`.
+3. Payment then happens in Paystack's secure popup. Card and MoMo details never touch this site. Customers enter an email for their receipt.
+4. **Verify payments on the server** before treating an order as paid. A browser callback alone can be faked. On Netlify, `netlify/functions/verify-payment.js` is ready to use: set the `PAYSTACK_SECRET_KEY` environment variable and set `verifyUrl: "/.netlify/functions/verify-payment"`. Never put the secret key in `menu.js`.
+5. She sees every payment, with the items, phone number and delivery address attached, in her Paystack dashboard and in email alerts. The customer's "Send receipt to Spice N Cook" WhatsApp button gives her a second heads-up.
+
+To charge delivery online, set `deliveryFee` to a number in GHS. Leave it as `null` to arrange delivery after the order.
+
 ## Editing content
 
 Everything lives in **`js/menu.js`**: prices, dishes, box contents, phone number, socials,
@@ -53,7 +70,8 @@ so a real photo of that dish is the first one to ask her for.
 
 - [ ] Ask her for a real photo of the Wednesday pepper rice (and her original logo file, for a sharper logo)
 - [ ] Set `showPreviewBar: false` in `js/menu.js` (removes the "Hi Spice N Cook 👋" demo bar)
-- [ ] Confirm with her: delivery vs pickup, and delivery areas/fees
+- [ ] Confirm with her: delivery vs pickup, and delivery areas/fees (set `deliveryFee` if she wants it paid online)
+- [ ] Set up Paystack and switch `payments.mode` to `"paystack"` (see above)
 - [ ] After deploying, change `og:image` in `index.html` to the full URL (e.g. `https://yourdomain/assets/og-image.jpg`) so WhatsApp link previews show the image
 
 ## Files
@@ -62,7 +80,10 @@ so a real photo of that dish is the first one to ask her for.
 index.html            page structure + SEO/schema
 css/styles.css        design system & layout
 js/menu.js            ALL editable content
-js/app.js             menu, boxes, cart, WhatsApp, forms
+js/app.js             menu, boxes, cart, checkout & payment, WhatsApp, forms
+js/anim.js            all animation (GSAP)
+js/vendor/            GSAP, ScrollTrigger, SplitText (standard no-charge licence)
+netlify/functions/    server-side Paystack payment verification
 assets/img/           her photos and logo, web-optimised
 assets/               favicon, share image
 ```

@@ -22,6 +22,18 @@ window.SNC = {
   // Set to false before going live to hide the "preview" welcome strip
   showPreviewBar: true,
 
+  /* Online payment.
+     mode "demo":     the full checkout works, Mobile Money approval is simulated,
+                      no money moves. Use this for showing the site.
+     mode "paystack": real payments through Paystack's secure popup
+                      (Mobile Money + cards). Needs paystackPublicKey. */
+  payments: {
+    mode: "demo",
+    paystackPublicKey: "", // "pk_test_…" while testing, "pk_live_…" when live
+    verifyUrl: "", // optional: serverless endpoint that verifies a payment by reference
+    deliveryFee: null, // a number in GHS to charge delivery online; null = arranged after the order
+  },
+
   /* Weekly specials. day: 0=Sun … 6=Sat. Every pack includes a juice. */
   specials: [
     {
