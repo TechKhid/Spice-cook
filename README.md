@@ -61,6 +61,28 @@ Payment settings are in `js/menu.js` under `payments`.
 
 To charge delivery online, set `deliveryFee` to a number in GHS. Leave it as `null` to arrange delivery after the order.
 
+## Visitor insights (who's looking, from where)
+
+A private dashboard at **https://techkhid.github.io/Spice-cook/insights/** shows each visit:
+
+- Approximate location (city, region, country) on a map and in a list.
+- Device, and whether the link was opened inside Instagram or TikTok.
+- Where the visitor came from, and how long they stayed.
+- What they did: which sections they reached, what they added, whether they started checkout or paid, and WhatsApp taps.
+
+It refreshes every 30 seconds and can export a CSV. Add `?demo=1` to the address to preview it with sample data.
+
+**Privacy.** No IP addresses, names or phone numbers are stored. Location is a network-based, city-level estimate with coordinates rounded to about 10 km. Visitors can only *add* visit records; reading them needs your passphrase, which is checked inside the database. The site footer says visits are counted anonymously. Bots and automated browsers are skipped.
+
+**Setup (about 10 minutes, free):**
+
+1. Create a free project at [supabase.com](https://supabase.com).
+2. Open **SQL Editor → New query**, paste [`supabase/insights.sql`](supabase/insights.sql), change the passphrase on the last lines to your own (12+ characters), and press **Run**. If you leave the placeholder in, the script stops with an error.
+3. Go to **Project Settings → API**. Copy the **Project URL** and the **anon / publishable** key into `insights` in `js/menu.js`. Never use the `service_role` or secret key. Commit and push; Pages redeploys in about a minute.
+4. Open `/insights/` and sign in with your passphrase. That browser then stops counting your own visits; there's a toggle at the bottom of the dashboard.
+
+**Know when a specific person opens it.** Add a tag to the link you share, e.g. `https://techkhid.github.io/Spice-cook/?r=ig-dm`. Visits from that link show **"Your link: ig-dm"**. Use a different tag for each place you post it: `?r=tiktok-bio`, `?r=whatsapp-status`, and so on.
+
 ## Editing content
 
 Everything lives in **`js/menu.js`**: prices, dishes, box contents, phone number, socials,
@@ -88,6 +110,9 @@ js/app.js             menu, boxes, cart, checkout & payment, WhatsApp, forms
 js/anim.js            all animation (GSAP)
 js/vendor/            GSAP, ScrollTrigger, SplitText (standard no-charge licence)
 netlify/functions/    server-side Paystack payment verification
+js/track.js           anonymous visit tracking (feeds /insights/)
+insights/             private visitor dashboard (+ bundled Leaflet map)
+supabase/insights.sql database table, permissions and passphrase for insights
 assets/img/           her photos and logo, web-optimised
 assets/               favicon, share image
 ```

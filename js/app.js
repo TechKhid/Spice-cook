@@ -226,7 +226,7 @@
     else cart.items.push(item);
     save();
     renderCart();
-    emit("snc:add", { from: fromEl, photo: item.photo });
+    emit("snc:add", { from: fromEl, photo: item.photo, name: item.name, option: item.detail, qty: item.qty });
     toast(`${item.qty} × ${item.name} added for ${fmtDate(fromIso(item.date))}.`, true);
   }
 

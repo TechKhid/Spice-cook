@@ -34,6 +34,14 @@ window.SNC = {
     deliveryFee: null, // a number in GHS to charge delivery online; null = arranged after the order
   },
 
+  /* Visitor insights (dashboard at /insights/). Paste your Supabase project URL
+     and its publishable/anon key here. Both are safe to be public: the key can
+     only ADD visit records, never read them. See README → Visitor insights. */
+  insights: {
+    supabaseUrl: "", // e.g. "https://abcdxyz.supabase.co"
+    supabaseKey: "", // the "anon" / "publishable" key, never the service_role/secret key
+  },
+
   /* Weekly specials. day: 0=Sun … 6=Sat. Every pack includes a juice. */
   specials: [
     {
