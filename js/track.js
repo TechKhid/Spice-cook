@@ -1,23 +1,32 @@
 /* ==========================================================================
-   SPICE N COOK — visit insights (feeds insights/index.html)
+   SPICE N COOK — visit insights
    Records anonymous visits: approximate city, device, where the visitor came
    from, how long they stayed and what they did (viewed boxes, started
    checkout…). No IP addresses, names or phone numbers are stored.
-   Does nothing until insights.supabaseUrl / supabaseKey are set in menu.js.
+
+   Two outputs, each switched on in js/menu.js → insights:
+   - ntfyTopic:   instant phone alerts through ntfy.sh (no account needed)
+   - supabaseUrl/supabaseKey: full history for the /insights/ dashboard
+   Open the site once with ?me on your own phone to stop counting yourself
+   (?me=off undoes it).
    ========================================================================== */
 
 (function () {
   "use strict";
 
   const C = (window.SNC && window.SNC.insights) || {};
-  if (!C.supabaseUrl || !C.supabaseKey) return;
+  const hasDb = !!(C.supabaseUrl && C.supabaseKey);
+  const topic = C.ntfyTopic || "";
+  if (!hasDb && !topic) return;
   if (/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname) || location.protocol === "file:") return;
   if (navigator.webdriver) return; // automated browsers and bots
+  const q0 = new URLSearchParams(location.search);
+  if (q0.has("me")) { try { localStorage.setItem("snc-nt", q0.get("me") === "off" ? "0" : "1"); } catch (e) {} }
   let optedOut = false;
   try { optedOut = localStorage.getItem("snc-nt") === "1"; } catch (e) {}
-  if (optedOut) return; // you, after opening the insights page on this device
+  if (optedOut) return; // your own device
 
-  const endpoint = `${C.supabaseUrl.replace(/\/+$/, "")}/rest/v1/snc_events`;
+  const endpoint = hasDb ? `${C.supabaseUrl.replace(/\/+$/, "")}/rest/v1/snc_events` : "";
   const id = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)).replace(/-/g, "").slice(0, 20);
   const keep = (storage, k) => { try { let v = storage.getItem(k); if (!v) { v = id(); storage.setItem(k, v); } return v; } catch (e) { return id(); } };
   const vid = keep(localStorage, "snc-vid");
@@ -25,13 +34,61 @@
   const cut = (s, n) => (s == null ? null : String(s).slice(0, n));
 
   function send(type, extra, keepalive) {
-    const body = Object.assign({ vid, sid, type }, extra);
-    return fetch(endpoint, {
-      method: "POST",
-      keepalive: !!keepalive,
-      headers: { apikey: C.supabaseKey, "Content-Type": "application/json", Prefer: "return=minimal" },
-      body: JSON.stringify(body),
-    }).catch(() => {});
+    extra = extra || {};
+    if (hasDb) {
+      fetch(endpoint, {
+        method: "POST",
+        keepalive: !!keepalive,
+        headers: { apikey: C.supabaseKey, "Content-Type": "application/json", Prefer: "return=minimal" },
+        body: JSON.stringify(Object.assign({ vid, sid, type }, extra)),
+      }).catch(() => {});
+    }
+    if (topic) alertFor(type, extra, keepalive);
+  }
+
+  /* ------------------------------------------- instant alerts (ntfy.sh) */
+  const trip = { where: "", sections: [], adds: [], checkout: false, pay: false, wa: 0, bulk: false, told: false };
+  const dur = (s) => (s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${String(s % 60).padStart(2, "0")}s`);
+  function notify(title, message, tags, priority, keepalive) {
+    const qs = new URLSearchParams({ title, tags, priority: String(priority), click: location.origin + location.pathname });
+    // A "simple" request (plain-text body, no custom headers) so no CORS preflight is needed
+    fetch(`https://ntfy.sh/${encodeURIComponent(topic)}?${qs}`, { method: "POST", mode: "no-cors", keepalive: !!keepalive, body: message }).catch(() => {});
+  }
+  function alertFor(type, x, keepalive) {
+    switch (type) {
+      case "view": {
+        trip.where = [x.city, x.country].filter(Boolean).join(", ") || (x.tz ? x.tz.replace(/_/g, " ") : "Unknown location");
+        let first = true;
+        try { first = sessionStorage.getItem("snc-told") !== "1"; sessionStorage.setItem("snc-told", "1"); } catch (e) {}
+        if (!first) return; // a reload in the same visit
+        const how = [x.device, x.os, x.app ? `opened in ${x.app}` : x.browser].filter(Boolean).join(" · ");
+        const from = x.tag ? `Came from your link: ${x.tag}` : x.ref ? `Came from: ${x.ref}` : "Direct or shared link";
+        const place = [x.city, x.region, x.country].filter(Boolean).join(", ") || trip.where;
+        notify(`New visit · ${trip.where}`, `📍 ${place}\n📱 ${how}\n🔗 ${from}`, "eyes", 4);
+        break;
+      }
+      case "section": if (x.detail && !trip.sections.includes(x.detail)) trip.sections.push(x.detail); break;
+      case "add": trip.adds.push(x.detail); break;
+      case "checkout": trip.checkout = true; break;
+      case "pay": trip.pay = true; break;
+      case "whatsapp": trip.wa++; break;
+      case "bulk": trip.bulk = true; break;
+      case "paid": notify(`Payment · ${trip.where}`, `💳 ${x.detail || "Order paid"}`, "moneybag", 4); break;
+      case "leave": {
+        if (trip.told) return;
+        // Skip reloads and quick tab switches where nothing happened yet
+        if (x.secs < 10 && !trip.sections.length && !trip.adds.length && !trip.checkout && !trip.wa) return;
+        trip.told = true;
+        const lines = [];
+        lines.push(trip.sections.length ? `Saw: ${trip.sections.join(", ")}` : "Only looked at the top of the page");
+        if (trip.adds.length) lines.push(`Added: ${trip.adds.join("; ")}`);
+        if (trip.checkout) lines.push(trip.pay ? "Started checkout and reached payment" : "Started checkout");
+        if (trip.wa) lines.push("Tapped WhatsApp");
+        if (trip.bulk) lines.push("Asked for a bulk quote");
+        notify(`Stayed ${dur(x.secs)} · ${trip.where || "visitor"}`, lines.join("\n"), "hourglass_flowing_sand", 2, keepalive);
+        break;
+      }
+    }
   }
 
   /* ------------------------------------------------ who / where / how */

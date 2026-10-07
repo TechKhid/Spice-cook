@@ -38,6 +38,10 @@ window.SNC = {
      and its publishable/anon key here. Both are safe to be public: the key can
      only ADD visit records, never read them. See README → Visitor insights. */
   insights: {
+    // Instant phone alerts for every visit, no account needed. Open
+    // https://ntfy.sh/snc-visits-e627de5cf665a8f16581 on your phone and tap Subscribe
+    // (or add this topic in the free ntfy app). Set to "" to switch off.
+    ntfyTopic: "snc-visits-e627de5cf665a8f16581",
     supabaseUrl: "", // e.g. "https://abcdxyz.supabase.co"
     supabaseKey: "", // the "anon" / "publishable" key, never the service_role/secret key
   },

@@ -142,3 +142,4 @@ main { padding: 22px 0 60px; display: grid; gap: 16px; }
   .s__when b { display: inline; margin-right: 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .status .live { animation: none; } }
+.alerts p + p { margin-top: 14px; }

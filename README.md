@@ -74,7 +74,13 @@ It refreshes every 30 seconds and can export a CSV. Add `?demo=1` to the address
 
 **Privacy.** No IP addresses, names or phone numbers are stored. Location is a network-based, city-level estimate with coordinates rounded to about 10 km. Visitors can only *add* visit records; reading them needs your passphrase, which is checked inside the database. The site footer says visits are counted anonymously. Bots and automated browsers are skipped.
 
-**Setup (about 10 minutes, free):**
+**Instant visit alerts (already on, no account).** Every visit sends a phone alert through [ntfy](https://ntfy.sh), a free open-source notification service. Each visit sends: *New visit* (city, device, in-app browser, link tag), a *Payment* alert if they pay, and *Stayed Xm* when they leave, with what they looked at and added.
+- To receive them, open `https://ntfy.sh/<ntfyTopic from js/menu.js>` on your phone, tap **Subscribe**, and allow notifications. Or add the topic in the free ntfy app (Android/iOS). The `/insights/` page links straight to it.
+- Open the site once with `?me` on your own phone (`…/Spice-cook/?me`) so your own visits don't alert you. `?me=off` undoes it.
+- ntfy keeps messages on its server for about 12 hours. After that, your phone's ntfy app or browser keeps the history, so subscribe before you share the link.
+- Anyone who reads `js/menu.js` in this public repo could find the topic name and see the same alerts (approximate city and device only). That's fine for a demo. For a real business, switch to the Supabase dashboard below and set `ntfyTopic: ""`.
+
+**Full history dashboard: setup (about 10 minutes, free):**
 
 1. Create a free project at [supabase.com](https://supabase.com).
 2. Open **SQL Editor → New query**, paste [`supabase/insights.sql`](supabase/insights.sql), change the passphrase on the last lines to your own (12+ characters), and press **Run**. If you leave the placeholder in, the script stops with an error.

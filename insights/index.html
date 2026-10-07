@@ -33,6 +33,13 @@
 
   <main class="wrap" id="main">
     <!-- Not configured yet -->
+    <section class="card setup alerts" id="alerts" hidden>
+      <h2>Live visit alerts are on</h2>
+      <p>Every visit to the site sends an alert with the visitor's approximate city, device, and what they looked at when they leave. No account needed.</p>
+      <p><a class="btn btn--ink" id="alertsLink" target="_blank" rel="noopener">Open visit alerts</a></p>
+      <p class="muted">On that page tap <b>Subscribe</b>, and allow notifications to get them on your phone. The free <b>ntfy</b> app works too: add the topic <code id="alertsTopic"></code>. Open the site once with <code>?me</code> on the end so your own visits don't alert you.</p>
+    </section>
+
     <section class="card setup" id="setup" hidden>
       <h2>Connect your visitor database</h2>
       <p>This page shows who visits the Spice N Cook site: approximate city, device, where they came from, how long they stayed and what they did. It needs a free Supabase database to store visits.</p>

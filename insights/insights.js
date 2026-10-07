@@ -415,6 +415,12 @@
   setInterval(tick, 5000);
   setInterval(() => { if (!$("#dash").hidden && document.visibilityState === "visible" && !DEMO) load(false); }, 30000);
 
+  if (C.ntfyTopic && !DEMO) {
+    const url = `https://ntfy.sh/${encodeURIComponent(C.ntfyTopic)}`;
+    $("#alertsLink").href = url;
+    $("#alertsTopic").textContent = C.ntfyTopic;
+    $("#alerts").hidden = false;
+  }
   if (DEMO) load(true);
   else if (!BASE || !C.supabaseKey) show("setup");
   else if (pass) load(true);
