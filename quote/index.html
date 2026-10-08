@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Spice N Cook Website Quote</title>
+  <meta name="description" content="Quote for the Spice N Cook website and ordering system: the build, payment terms and monthly running costs." />
+  <meta property="og:title" content="Spice N Cook · Website quote" />
+  <meta property="og:description" content="The build, payment terms and monthly running costs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://techkhid.github.io/Spice-cook/quote/" />
+  <meta property="og:image" content="https://techkhid.github.io/Spice-cook/assets/og-image.jpg" />
+  <link rel="icon" href="../assets/favicon.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column, like a printed quote on kraft paper; numbers in the sans, headings in her brand's condensed caps. */
+:root {
+  --paper: #f4eee3;
+  --sheet: #fbf8f2;
+  --ink: #1b1a16;
+  --ink-2: #4a463d;
+  --ink-3: #7a7365;
+  --rule: rgba(27, 26, 22, 0.13);
+  --green: #153f24;
+  --green-2: #1d6b34;
+  --bar-bg: rgba(29, 107, 52, 0.13);
+  --lime: #d9c81e;
+  --lime-ink: #1b1a16;
+  --chili: #b8361d;
+  --on-green: #f4eee3;
+  --caps: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1510; --sheet: #161e17; --ink: #efe9dc; --ink-2: #c9c2b3; --ink-3: #958e7f;
+    --rule: rgba(239, 233, 220, 0.14); --green: #1f5a33; --green-2: #6fbf86; --bar-bg: rgba(111, 191, 134, 0.16);
+    --lime: #d9c81e; --lime-ink: #1b1a16; --chili: #ef7a5f; --on-green: #f4eee3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1510; --sheet: #161e17; --ink: #efe9dc; --ink-2: #c9c2b3; --ink-3: #958e7f;
+  --rule: rgba(239, 233, 220, 0.14); --green: #1f5a33; --green-2: #6fbf86; --bar-bg: rgba(111, 191, 134, 0.16);
+  --lime: #d9c81e; --lime-ink: #1b1a16; --chili: #ef7a5f; --on-green: #f4eee3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; padding: 0 16px; padding-block: 28px 64px; }
+.page { max-width: 860px; margin: 0 auto; display: grid; gap: 40px; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: var(--caps); text-transform: uppercase; letter-spacing: 0.01em; text-wrap: balance; line-height: 0.95; }
+h1 { font-size: clamp(44px, 9vw, 76px); font-weight: 900; }
+h2 { font-size: clamp(30px, 5.5vw, 40px); font-weight: 900; }
+h3 { font-size: 16px; font-weight: 700; }
+a { color: var(--green-2); text-underline-offset: 3px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.lede { font-size: 18px; color: var(--ink-2); max-width: 62ch; }
+.muted { color: var(--ink-3); font-size: 14px; }
+.num { font-variant-numeric: tabular-nums; }
+section { display: grid; gap: 18px; }
+.sec-head { display: grid; gap: 8px; }
+
+/* header */
+.top { display: grid; gap: 18px; padding-bottom: 26px; border-bottom: 2px solid var(--ink); }
+.stamp { display: inline-block; justify-self: start; background: var(--lime); color: var(--lime-ink); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+.meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 20px; }
+.meta div { display: grid; gap: 2px; min-width: 0; }
+.meta dt { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.meta dd { margin: 0; font-weight: 600; }
+
+/* key figures */
+.keys { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 12px; }
+.key { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.key b { font: 600 30px/1.1 var(--sans); font-variant-numeric: tabular-nums; }
+.key span { font-size: 14px; color: var(--ink-2); }
+.key--main { background: var(--green); border-color: var(--green); color: var(--on-green); }
+.key--main b { font-size: 40px; }
+.key--main span { color: var(--on-green); opacity: 0.82; }
+
+/* build breakdown */
+.items { list-style: none; margin: 0; padding: 0; display: grid; }
+.item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 18px; padding: 18px 0; border-top: 1px solid var(--rule); }
+.item:last-child { border-bottom: 1px solid var(--rule); }
+.item h3 { font-size: 17px; }
+.item .amt { font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; text-align: right; }
+.item p { grid-column: 1 / -1; color: var(--ink-2); font-size: 15px; max-width: 66ch; }
+.track { grid-column: 1 / -1; height: 8px; background: var(--bar-bg); border-radius: 4px; overflow: hidden; }
+.fill { height: 100%; background: var(--green-2); border-radius: 4px; }
+.total { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 6px; }
+.total span { font-family: var(--caps); font-weight: 900; text-transform: uppercase; font-size: 26px; }
+.total b { font-size: 26px; font-variant-numeric: tabular-nums; }
+
+/* terms */
+.terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.term { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.term .big { font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; }
+.term p { font-size: 14.5px; color: var(--ink-2); }
+
+/* tables */
+.scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--sheet); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 14.5px; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); background: transparent; }
+tr:last-child td { border-bottom: 0; }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+.free { display: inline-block; font-weight: 700; color: var(--green-2); }
+tfoot td { font-weight: 700; border-top: 2px solid var(--ink); border-bottom: 0; }
+sup a { text-decoration: none; font-weight: 700; font-size: 11px; }
+
+/* calculator */
+.calc { background: var(--sheet); border: 1.5px solid var(--ink); border-radius: 6px; padding: 20px; display: grid; gap: 18px; }
+.controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; }
+.ctl { display: grid; gap: 8px; min-width: 0; }
+.ctl > label:not(.check), .ctl > .lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+.ctl output { font-weight: 700; color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 15px; }
+input[type="range"] { width: 100%; accent-color: var(--green-2); }
+.money { display: flex; align-items: center; border: 1.5px solid var(--rule); border-radius: 4px; background: var(--paper); max-width: 220px; }
+.money span { padding: 0 10px; color: var(--ink-3); font-weight: 600; }
+.money input { border: 0; background: transparent; padding: 10px 10px 10px 0; width: 100%; font: 600 16px var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
+.money:focus-within { border-color: var(--ink); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1.5px solid var(--ink); border-radius: 4px; overflow: hidden; justify-self: start; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.seg span { display: block; padding: 8px 12px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.seg input:checked + span { background: var(--ink); color: var(--paper); }
+.seg input:focus-visible + span { outline: 2px solid var(--lime); outline-offset: -4px; }
+.check { display: flex; gap: 10px; align-items: center; font-size: 15px; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--green-2); }
+.out { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; border-top: 1px solid var(--rule); padding-top: 16px; }
+.out div { display: grid; gap: 2px; min-width: 0; }
+.out b { font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.out span { font-size: 13.5px; color: var(--ink-2); }
+.out .hl b { color: var(--green-2); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* lists */
+.own { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; }
+.own li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 15px; color: var(--ink-2); }
+.own li::before { content: ""; width: 12px; height: 12px; margin-top: 6px; border-radius: 2px; background: var(--lime); }
+.own b { color: var(--ink); }
+.need { margin: 0; padding-left: 22px; display: grid; gap: 10px; color: var(--ink-2); max-width: 70ch; }
+.need b { color: var(--ink); }
+.note { border-left: 4px solid var(--lime); background: var(--sheet); padding: 14px 16px; border-radius: 0 6px 6px 0; font-size: 15px; color: var(--ink-2); max-width: 72ch; }
+.note b { color: var(--ink); }
+.phases { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.phases li { border-top: 3px solid var(--green-2); padding-top: 10px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.phases b { font-size: 15px; }
+.phases span { font-size: 14px; color: var(--ink-2); }
+.sources { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 13.5px; color: var(--ink-3); }
+.sources a { color: var(--ink-2); word-break: break-word; }
+footer { border-top: 2px solid var(--ink); padding-top: 18px; display: grid; gap: 8px; }
+
+@media (max-width: 760px) {
+  .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .keys, .terms, .out { grid-template-columns: 1fr; }
+  .controls, .own { grid-template-columns: 1fr; }
+  .phases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: no-preference) { .fill { transition: width 0.4s ease; } }
+</style>
+</head>
+<body>
+
+<main class="page">
+  <header class="top">
+    <span class="stamp">Quote</span>
+    <h1>Spice N Cook website &amp; ordering system</h1>
+    <p class="lede">Customers order and pay on your website with Mobile Money or card. You get each order on your phone, manage everything from your own dashboard, and change prices and photos yourself. WhatsApp ordering stays for customers who prefer it.</p>
+    <dl class="meta">
+      <div><dt>Prepared for</dt><dd>Spice N Cook Food Brand, East Legon Hills</dd></div>
+      <div><dt>Prepared by</dt><dd>Samuel</dd></div>
+      <div><dt>Date</dt><dd>8 October 2026</dd></div>
+      <div><dt>Prices valid until</dt><dd>31 October 2026</dd></div>
+    </dl>
+  </header>
+
+  <section aria-label="Summary">
+    <div class="keys">
+      <div class="key key--main"><b class="num">GHS 4,000</b><span>One-time build fee, paid to me</span></div>
+      <div class="key"><b class="num">≈ GHS 18.50</b><span>Monthly running cost at about 30 orders a week, paid by you to the providers</span></div>
+      <div class="key"><b class="num">1.95%</b><span>Paystack fee per online payment, taken before payout</span></div>
+    </div>
+  </section>
+
+  <section id="build">
+    <div class="sec-head">
+      <p class="eyebrow">Part 1 · What the GHS 4,000 covers</p>
+      <h2>The build</h2>
+    </div>
+    <ol class="items" id="items"></ol>
+    <div class="total"><span>Total build</span><b>GHS 4,000</b></div>
+  </section>
+
+  <section id="terms">
+    <div class="sec-head">
+      <p class="eyebrow">Part 2 · How you pay me</p>
+      <h2>Payment &amp; support</h2>
+    </div>
+    <div class="terms">
+      <div class="term"><span class="eyebrow">To start</span><span class="big">GHS 2,000</span><p>50% deposit. Work starts the day it lands.</p></div>
+      <div class="term"><span class="eyebrow">At launch</span><span class="big">GHS 2,000</span><p>The other 50% once the site is live and you've placed a real test order.</p></div>
+      <div class="term"><span class="eyebrow">After launch</span><span class="big">2 months free</span><p>Fixes, small changes and security checks included. After that, GHS 300 only in months you ask for changes. Months you don't ask, you pay nothing.</p></div>
+    </div>
+    <p class="muted">Bigger new features later (for example loyalty points or a delivery-zone calculator) are quoted separately before any work starts.</p>
+  </section>
+
+  <section id="running">
+    <div class="sec-head">
+      <p class="eyebrow">Part 3 · Paid by you, straight to each provider</p>
+      <h2>Running costs</h2>
+      <p class="lede">These don't pass through me. Each account is in your name and billed to you directly, so you can see every charge.</p>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Service</th><th>What it does for you</th><th>Verified price</th><th class="r">At ~30 orders a week</th></tr></thead>
+        <tbody>
+          <tr><td><b>Domain name</b><small>.com, through Cloudflare</small></td><td>Your web address, registered in your name</td><td>US$10.46 a year, rising to US$11.17 on 1 Nov 2026 <sup><a href="#s1">1</a></sup></td><td class="r">≈ GHS 129 / year</td></tr>
+          <tr><td><b>Hosting</b><small>Cloudflare Workers</small></td><td>Runs the site, checkout and dashboard</td><td>Free up to 100,000 requests a day <sup><a href="#s2">2</a></sup></td><td class="r"><span class="free">GHS 0</span></td></tr>
+          <tr><td><b>Orders database</b><small>Cloudflare D1</small></td><td>Stores orders, menu and prices</td><td>Free up to 5 GB and 100,000 saves a day <sup><a href="#s3">3</a></sup></td><td class="r"><span class="free">GHS 0</span></td></tr>
+          <tr><td><b>Photo storage</b><small>Cloudflare R2</small></td><td>Holds the photos you upload and delivers them fast</td><td>Free up to 10 GB, no charge for viewing <sup><a href="#s4">4</a></sup></td><td class="r"><span class="free">GHS 0</span></td></tr>
+          <tr><td><b>WhatsApp alerts</b><small>Meta (WhatsApp Business Platform)</small></td><td>A WhatsApp message to you for every paid order</td><td>US$0.004 a message, straight from Meta, no middleman fee <sup><a href="#s5">5</a></sup></td><td class="r">≈ GHS 6.40 / month<small>130 alerts</small></td></tr>
+          <tr><td><b>SMS</b><small>Arkesel</small></td><td>SMS copy of each alert to you, plus order confirmation and “on its way” SMS to customers</td><td>GHS 0.031 an SMS, credit never expires <sup><a href="#s6">6</a></sup></td><td class="r">≈ GHS 12.09 / month<small>390 SMS</small></td></tr>
+          <tr><td><b>WhatsApp ordering</b><small>Your current number</small></td><td>The “Order on WhatsApp” button stays</td><td>Free, it opens a normal chat</td><td class="r"><span class="free">GHS 0</span></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="3">Monthly total (alerts and SMS)</td><td class="r">≈ GHS 18.49</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="note"><b>Paystack</b> takes 1.95% of each payment, the same for MoMo, card and bank transfer, and there's no monthly fee <sup><a href="#s7">7</a></sup>. On a GHS 110 pepper rice pack that's <b>GHS 2.15</b>, and you receive GHS 107.85. Your Paystack account is already verified, so no setup cost or waiting.</div>
+    <div class="note"><b>How you're billed:</b> Meta charges your card each month for the WhatsApp messages actually sent, about US$0.52 (≈ GHS 6.40) at your current volume, with no monthly fee. Arkesel is prepaid: GHS 50 of credit buys 1,667 SMS, roughly 4 months, and it never expires.</div>
+  </section>
+
+  <section id="calculator">
+    <div class="sec-head">
+      <p class="eyebrow">Try your own numbers</p>
+      <h2>Cost calculator</h2>
+    </div>
+    <form class="calc" id="calc" onsubmit="return false">
+      <div class="controls">
+        <div class="ctl">
+          <label for="orders">Orders a week: <output id="ordersOut" for="orders">30</output></label>
+          <input type="range" id="orders" min="5" max="200" step="5" value="30">
+        </div>
+        <div class="ctl">
+          <label for="avg">Average order value</label>
+          <div class="money"><span>GHS</span><input id="avg" type="number" inputmode="decimal" min="0" step="5" value="150"></div>
+        </div>
+        <div class="ctl">
+          <span class="lbl" id="custLbl">Customer updates by</span>
+          <div class="seg" role="radiogroup" aria-labelledby="custLbl">
+            <label><input type="radio" name="cust" id="custSms" value="sms" checked><span>SMS</span></label>
+            <label><input type="radio" name="cust" id="custWa" value="wa"><span>WhatsApp</span></label>
+            <label><input type="radio" name="cust" id="custNone" value="none"><span>None</span></label>
+          </div>
+        </div>
+        <div class="ctl">
+          <span class="lbl">Alerts to you</span>
+          <label class="check"><input type="checkbox" checked disabled id="aWa"> WhatsApp for every order</label>
+          <label class="check"><input type="checkbox" checked id="aSms"> SMS copy as a backup</label>
+        </div>
+      </div>
+      <div class="out" aria-live="polite">
+        <div class="hl"><b id="oMsg">GHS 18.49</b><span>Alerts and messages a month</span></div>
+        <div><b id="oPay">GHS 380.25</b><span>Paystack fees a month on <span id="oSales">GHS 19,500</span> of sales</span></div>
+        <div><b id="oNet">GHS 19,093</b><span>What you keep from online sales after both</span></div>
+      </div>
+      <p class="muted">Two customer updates per order (confirmed with tracking link, then on its way). Uses GHS 12.30 to the US dollar. Hosting, database and photo storage stay free at these volumes.</p>
+    </form>
+  </section>
+
+  <section id="ownership">
+    <div class="sec-head">
+      <p class="eyebrow">Part 4 · Your business, your keys</p>
+      <h2>You own everything</h2>
+      <p class="lede">Every account is opened with your email and paid with your card. I'm added as a team member to do the work, and you can remove me any time without the site going down.</p>
+    </div>
+    <ul class="own">
+      <li><span><b>Domain</b> registered in your name, in your own Cloudflare account</span></li>
+      <li><span><b>Hosting, database and photos</b> in that same account</span></li>
+      <li><span><b>Paystack</b> stays yours. Money goes straight to you, never through me</span></li>
+      <li><span><b>WhatsApp (Meta Business) and Arkesel</b> in your name, paid by you</span></li>
+      <li><span><b>The code</b>: you get a full copy at handover</span></li>
+      <li><span><b>Logins</b> written down for you in a handover guide</span></li>
+    </ul>
+  </section>
+
+  <section id="timeline">
+    <div class="sec-head">
+      <p class="eyebrow">Part 5 · Plan</p>
+      <h2>Timeline</h2>
+      <p class="lede">About 4 weeks from the deposit. Meta's WhatsApp checks and the SMS sender name usually take a few days, and I start both on day one alongside the build.</p>
+    </div>
+    <ul class="phases">
+      <li><b>Week 1</b><span>Accounts in your name, domain, WhatsApp and SMS sender applications</span></li>
+      <li><b>Week 2</b><span>Live site with Saturday soups &amp; stews, Paystack checkout</span></li>
+      <li><b>Week 3</b><span>Orders dashboard, menu and photo editing, alerts</span></li>
+      <li><b>Week 4</b><span>Real test orders, fixes, training session, launch</span></li>
+    </ul>
+  </section>
+
+  <section id="start">
+    <div class="sec-head">
+      <p class="eyebrow">Part 6 · To get started</p>
+      <h2>What I need from you</h2>
+    </div>
+    <ol class="need">
+      <li><b>The GHS 2,000 deposit</b> by MoMo or bank transfer.</li>
+      <li><b>Your web address.</b> spicencook.com is registered until July 2027 in a Namecheap account. Please check your email for anything from Namecheap. Whoever has that account can move the domain into a free Namecheap account in your name in a few minutes, without sharing any password. If that isn't possible, we launch on spicencookgh.com (free when I checked on 8 October) and can switch later.</li>
+      <li><b>A new SIM</b>, registered with your Ghana Card, to be the “Spice N Cook Orders” WhatsApp sender. WhatsApp needs a number that isn't already on WhatsApp. It only has to receive one code, and your alerts still arrive on your current WhatsApp.</li><li><b>A Facebook account</b> you're happy to use for your Meta Business account, which runs the WhatsApp alerts.</li>
+      <li><b>Team access to Paystack</b> (Settings → Team), so I can connect the checkout without your password.</li>
+      <li><b>Your business registration certificate</b>, in case Arkesel asks for it for the SMS sender name “SpiceNCook”, or Meta for its business check.</li>
+      <li><b>A card that pays in US dollars</b> for the domain and Meta's WhatsApp charges.</li>
+      <li><b>The Saturday menu and prices,</b> and any new photos you'd like on the site.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p class="eyebrow">Where the prices come from (checked 8 October 2026)</p>
+    <ol class="sources">
+      <li id="s1">Cloudflare Registrar sells at cost: <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">cloudflare.com/products/registrar</a>. The .com price rises on 1 Nov 2026: <a href="https://domainnamewire.com/2025/11/19/verisign-can-increase-com-prices-in-2026/" target="_blank" rel="noopener">Domain Name Wire</a>, <a href="https://osir.com/en/blog/verisign-com-price-update-2026/" target="_blank" rel="noopener">OSIR</a>.</li>
+      <li id="s2">Workers free plan limits: <a href="https://developers.cloudflare.com/workers/platform/limits/" target="_blank" rel="noopener">developers.cloudflare.com/workers/platform/limits</a>. Paid plan from US$5 a month if ever needed: <a href="https://developers.cloudflare.com/workers/platform/pricing/" target="_blank" rel="noopener">pricing</a>.</li>
+      <li id="s3">D1 pricing: <a href="https://developers.cloudflare.com/d1/platform/pricing/" target="_blank" rel="noopener">developers.cloudflare.com/d1/platform/pricing</a></li>
+      <li id="s4">R2 pricing: <a href="https://developers.cloudflare.com/r2/pricing/" target="_blank" rel="noopener">developers.cloudflare.com/r2/pricing</a></li>
+      <li id="s5">Meta WhatsApp pricing: Ghana is in the “Rest of Africa” group, utility messages US$0.004: <a href="https://developers.facebook.com/docs/whatsapp/pricing" target="_blank" rel="noopener">developers.facebook.com/docs/whatsapp/pricing</a>. Same Ghana rate listed by <a href="https://arkesel.com/whatsapp-business-api/" target="_blank" rel="noopener">Arkesel</a> and <a href="https://www.twilio.com/en-us/whatsapp/pricing" target="_blank" rel="noopener">Twilio</a>.</li>
+      <li id="s6">Arkesel bulk SMS, no-expiry credit: <a href="https://arkesel.com/pricing" target="_blank" rel="noopener">arkesel.com/pricing</a></li>
+      <li id="s7">Paystack charges, Ghana 1.95%: <a href="https://support.paystack.com/en/articles/2130306" target="_blank" rel="noopener">support.paystack.com</a></li>
+      <li>Exchange rate GHS 12.30 per US$ (forex market, 6 Oct 2026; Bank of Ghana interbank 11.77): <a href="https://modernghana.com/news/1533743/october-6-cedi-sells-at-ghs1230-on-forex-market.html" target="_blank" rel="noopener">Modern Ghana</a>. Your bank's card rate may differ slightly.</li>
+    </ol>
+    <p class="muted">Provider prices can change. Dollar-priced items move with the exchange rate.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var ITEMS = [
+    ["Website", 1200, "Everything in the demo, made live: weekly specials by day, Melanin Box and Mini, gifting, bulk-order requests, a new Saturday soups & stews section, photo gallery, hiring post. Fast on phones and set up to show on Google. WhatsApp ordering stays as an option."],
+    ["Online payments with Paystack", 600, "Customers pay on your site with MTN MoMo, Telecel Cash, AT Money or card. Every payment is checked with Paystack before the order counts as paid, so fake MoMo screenshots stop mattering. Customers get a receipt."],
+    ["Your orders dashboard", 800, "A private login on your phone. Today's and upcoming orders by day, a prep list (for example 18 jollof chicken, 7 goat), one-tap status buttons: preparing, ready, on its way, delivered. Search past orders and download them to Excel."],
+    ["Edit your own menu and photos", 600, "Change prices, dishes, box contents and sold-out items yourself. Upload new photos straight from your phone. They're resized automatically so the site stays fast."],
+    ["Order alerts and tracking", 500, "A WhatsApp alert and an SMS copy to you for every paid order. Customers get an SMS with a tracking link that updates when you tap a status. Includes setting up WhatsApp with Meta and SMS with Arkesel, getting the WhatsApp message approved by Meta, and registering the SMS sender name."],
+    ["Setup in your name, handover and training", 300, "Domain, hosting, Meta Business (WhatsApp) and Arkesel opened in your name. A walkthrough session, a short how-to guide, and a full copy of the code."]
+  ];
+  var max = Math.max.apply(null, ITEMS.map(function (i) { return i[1]; }));
+  var ol = document.getElementById("items");
+  ITEMS.forEach(function (it) {
+    var li = document.createElement("li");
+    li.className = "item";
+    li.innerHTML = '<h3></h3><span class="amt"></span><div class="track" aria-hidden="true"><div class="fill"></div></div><p></p>';
+    li.querySelector("h3").textContent = it[0];
+    li.querySelector(".amt").textContent = "GHS " + it[1].toLocaleString("en-GB");
+    li.querySelector(".fill").style.width = (it[1] / max * 100) + "%";
+    li.querySelector("p").textContent = it[2];
+    ol.appendChild(li);
+  });
+
+  var FX = 12.30, WA = 0.004 * FX, SMS = 0.031, PS = 0.0195;
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n, d) { return "GHS " + n.toLocaleString("en-GB", { minimumFractionDigits: d, maximumFractionDigits: d }); };
+  function calc() {
+    var perWeek = +$("orders").value;
+    var orders = perWeek * 52 / 12;
+    var avg = Math.max(0, parseFloat($("avg").value) || 0);
+    var cust = document.querySelector('input[name="cust"]:checked').value;
+    var per = WA + ($("aSms").checked ? SMS : 0) + (cust === "sms" ? 2 * SMS : cust === "wa" ? 2 * WA : 0);
+    var msg = orders * per, sales = orders * avg, fee = sales * PS;
+    $("ordersOut").textContent = perWeek;
+    $("oMsg").textContent = fmt(msg, 2);
+    $("oPay").textContent = fmt(fee, 2);
+    $("oSales").textContent = fmt(sales, 0);
+    $("oNet").textContent = fmt(Math.max(0, sales - fee - msg), 0);
+  }
+  $("calc").addEventListener("input", calc);
+  calc();
+})();
+</script>
+<script src="../js/menu.js"></script>
+<script src="../js/track.js" defer></script>
+</body>
+</html>

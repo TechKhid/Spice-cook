@@ -58,13 +58,15 @@
     switch (type) {
       case "view": {
         trip.where = [x.city, x.country].filter(Boolean).join(", ") || (x.tz ? x.tz.replace(/_/g, " ") : "Unknown location");
+        const quote = /\/quote\/?$/.test(location.pathname);
+        const key = quote ? "snc-told-quote" : "snc-told";
         let first = true;
-        try { first = sessionStorage.getItem("snc-told") !== "1"; sessionStorage.setItem("snc-told", "1"); } catch (e) {}
+        try { first = sessionStorage.getItem(key) !== "1"; sessionStorage.setItem(key, "1"); } catch (e) {}
         if (!first) return; // a reload in the same visit
         const how = [x.device, x.os, x.app ? `opened in ${x.app}` : x.browser].filter(Boolean).join(" · ");
         const from = x.tag ? `Came from your link: ${x.tag}` : x.ref ? `Came from: ${x.ref}` : "Direct or shared link";
         const place = [x.city, x.region, x.country].filter(Boolean).join(", ") || trip.where;
-        notify(`New visit · ${trip.where}`, `📍 ${place}\n📱 ${how}\n🔗 ${from}`, "eyes", 4);
+        notify(`${quote ? "Quote opened" : "New visit"} · ${trip.where}`, `📍 ${place}\n📱 ${how}\n🔗 ${from}`, quote ? "page_facing_up" : "eyes", 4);
         break;
       }
       case "section": if (x.detail && !trip.sections.includes(x.detail)) trip.sections.push(x.detail); break;
@@ -146,7 +148,12 @@
 
   // Which parts of the page they actually reached
   const seen = new Set();
-  const names = { lunch: "Weekly lunch", boxes: "Melanin Box", gifting: "Gifting", bulk: "Bulk orders", kitchen: "From the kitchen" };
+  const names = {
+    lunch: "Weekly lunch", boxes: "Melanin Box", gifting: "Gifting", bulk: "Bulk orders", kitchen: "From the kitchen",
+    // quote page
+    build: "The build", terms: "Payment & support", running: "Running costs", calculator: "Calculator",
+    ownership: "You own everything", timeline: "Timeline", start: "What I need from you",
+  };
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) =>
       entries.forEach((e) => {

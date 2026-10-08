@@ -118,6 +118,7 @@ js/vendor/            GSAP, ScrollTrigger, SplitText (standard no-charge licence
 netlify/functions/    server-side Paystack payment verification
 js/track.js           anonymous visit tracking (feeds /insights/)
 insights/             private visitor dashboard (+ bundled Leaflet map)
+quote/                the client quote page (not linked from the site, not indexed)
 supabase/insights.sql database table, permissions and passphrase for insights
 assets/img/           her photos and logo, web-optimised
 assets/               favicon, share image
